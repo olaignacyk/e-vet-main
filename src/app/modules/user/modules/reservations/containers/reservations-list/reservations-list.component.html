@@ -1,0 +1,18 @@
+<div>
+  <h1>Moje wizyty</h1>
+</div>
+
+<mat-card>
+  <div
+    class="reservations-list__loading"
+    *ngIf="reservationsState.reservationsIsLoading | async"
+  >
+    <mat-spinner></mat-spinner>
+  </div>
+  <app-generic-user-table
+    *ngIf="!(reservationsState.reservationsIsLoading | async)"
+    [config]="tableConfig"
+    [data]="reservationsState.reservations | async"
+    (openDetailsRes)="onOpenDetailsRes($event)"
+  ></app-generic-user-table>
+</mat-card>

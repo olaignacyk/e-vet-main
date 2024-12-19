@@ -1,0 +1,23 @@
+<mat-card class="work-schedule">
+  <mat-card-title>Tydzień pracy</mat-card-title>
+  <mat-card-subtitle>Najbliższe 7 dyżurów</mat-card-subtitle>
+  <mat-card-content>
+    <mat-table [dataSource]="schedules">
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef>Data</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.date }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="range">
+        <mat-header-cell *matHeaderCellDef>Godziny</mat-header-cell>
+        <mat-cell *matCellDef="let element"
+          >{{ element.startTime | slice: 0:5 }} -
+          {{ element.endTime | slice: 0:5 }}</mat-cell
+        >
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columns"></mat-row>
+    </mat-table>
+  </mat-card-content>
+</mat-card>

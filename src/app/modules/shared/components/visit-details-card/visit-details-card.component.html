@@ -1,0 +1,60 @@
+<mat-card>
+  <div class="visit-details__header">
+    <h2>Karta wizyty {{ date }}</h2>
+    <button
+      *ngIf="!readonly"
+      mat-flat-button
+      color="primary"
+      (click)="onSave()"
+    >
+      Zapisz
+    </button>
+  </div>
+
+  <div class="visit-details__form" [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Diagnoza</mat-label>
+      <textarea
+        matInput
+        rows="10"
+        formControlName="diagnosis"
+        [readonly]="readonly"
+      ></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Zalecenia</mat-label>
+      <textarea
+        matInput
+        rows="6"
+        formControlName="recommendations"
+        [readonly]="readonly"
+      ></textarea>
+    </mat-form-field>
+    <div>
+      <h3 class="subtitle">Zabiegi</h3>
+      <app-generic-admin-table
+        [config]="proceduresTableConfig"
+        [data]="procedures"
+        [displayCreate]="!readonly"
+        [displayEdit]="!readonly"
+        [displayDelete]="!readonly"
+        (dialogCreateRes)="createProcedure($event)"
+        (dialogEditRes)="editProcedure($event)"
+      >
+      </app-generic-admin-table>
+    </div>
+    <!--    <div>-->
+    <!--      <h3 class="subtitle">Przepisane leki</h3>-->
+    <!--      <app-generic-admin-table-->
+    <!--        [config]="proceduresTableConfig"-->
+    <!--        [data]="procedures"-->
+    <!--        [displayCreate]="true"-->
+    <!--        [displayEdit]="true"-->
+    <!--        [displayDelete]="true"-->
+    <!--        (dialogCreateRes)="createProcedure($event)"-->
+    <!--        (dialogEditRes)="editProcedure($event)"-->
+    <!--      >-->
+    <!--      </app-generic-admin-table>-->
+    <!--    </div>-->
+  </div>
+</mat-card>

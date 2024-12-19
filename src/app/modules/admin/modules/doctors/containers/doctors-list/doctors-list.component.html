@@ -1,0 +1,23 @@
+<div>
+  <h1>Lista lekarzy</h1>
+</div>
+
+<mat-card>
+  <div
+    class="doctors-list__loading"
+    *ngIf="doctorsState.doctorsIsLoading | async"
+  >
+    <mat-spinner></mat-spinner>
+  </div>
+  <app-generic-admin-table
+    *ngIf="!(doctorsState.doctorsIsLoading | async)"
+    [config]="tableConfig"
+    [data]="doctorsState.doctors | async"
+    [displayEdit]="true"
+    [displayCreate]="true"
+    [displayDelete]="true"
+    (dialogCreateRes)="onCreateRes($event)"
+    (dialogEditRes)="onUpdateRes($event)"
+    (deleteRes)="onDeleteRes($event)"
+  ></app-generic-admin-table>
+</mat-card>

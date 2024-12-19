@@ -1,0 +1,126 @@
+<mat-card>
+  <mat-card-header class="register__header">
+    <img class="register__logo" src="assets/img/logo.png" />
+    <h2>Rejestracja</h2>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-stepper orientation="vertical" [linear]="true" #stepper>
+      <mat-step [stepControl]="personalDetailsForm">
+        <ng-template matStepLabel>Dane osobowe</ng-template>
+        <form [formGroup]="personalDetailsForm" class="register-step__form">
+          <mat-form-field appearance="outline">
+            <mat-label>Imię</mat-label>
+            <input [formControlName]="'firstName'" matInput />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Nazwisko</mat-label>
+            <input [formControlName]="'lastName'" matInput />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Telefon</mat-label>
+            <input [formControlName]="'phone'" matInput />
+          </mat-form-field>
+          <button mat-button matStepperNext type="button">Następny krok</button>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="addressDetailsForm">
+        <ng-template matStepLabel>Dane adresowe</ng-template>
+        <form [formGroup]="addressDetailsForm" class="register-step__form">
+          <mat-form-field appearance="outline">
+            <mat-label>Adres</mat-label>
+            <input [formControlName]="'address'" matInput />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Miasto</mat-label>
+            <input [formControlName]="'city'" matInput />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Kod pocztowy</mat-label>
+            <input [formControlName]="'postalCode'" matInput />
+          </mat-form-field>
+          <button mat-button matStepperNext type="button">Następny krok</button>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Szczegóły konta</ng-template>
+        <form [formGroup]="registerForm" class="register__form">
+          <mat-form-field appearance="outline">
+            <mat-label>Adres email</mat-label>
+            <input
+              [formControlName]="'email'"
+              matInput
+              placeholder="email@example.com"
+            />
+            <mat-icon matSuffix> alternate_email</mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Hasło</mat-label>
+            <input
+              [formControlName]="'password'"
+              matInput
+              type="{{ showPassword ? 'text' : 'password' }}"
+              placeholder="password"
+            />
+
+            <mat-icon
+              matSuffix
+              (mousedown)="showPassword = true"
+              (mouseup)="showPassword = false"
+              (mouseleave)="showPassword = false"
+              >{{ showPassword ? "lock_open" : "lock" }}</mat-icon
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Powtórz hasło</mat-label>
+            <input
+              [formControlName]="'passwordCheck'"
+              matInput
+              type="{{ showPasswordCheck ? 'text' : 'password' }}"
+              placeholder="password"
+            />
+            <mat-icon
+              matSuffix
+              (mousedown)="showPasswordCheck = true"
+              (mouseup)="showPasswordCheck = false"
+              (mouseleave)="showPasswordCheck = false"
+              >{{ showPasswordCheck ? "lock_open" : "lock" }}</mat-icon
+            >
+          </mat-form-field>
+          <mat-error *ngIf="registerForm.hasError('email', 'email')">
+            *Podaj poprawny email
+          </mat-error>
+          <mat-error
+            *ngIf="registerForm.hasError('passwordValidator', 'passwordCheck')"
+          >
+            *Hasła nie są takie same
+          </mat-error>
+          <mat-error *ngIf="registerForm.hasError('pattern', 'password')">
+            *Hasło musi składać się z minium 8 znaków, jedna mała litera, jedna
+            wielka litera, cyfra oraz znak specjalny($@!%*#?&)
+          </mat-error>
+        </form>
+      </mat-step>
+    </mat-stepper>
+  </mat-card-content>
+  <mat-card-actions class="register__actions">
+    <button class="register__buttons" mat-button [routerLink]="['/auth']">
+      Anuluj
+    </button>
+    <button
+      class="register__buttons"
+      mat-flat-button
+      color="primary"
+      (click)="register()"
+      [disabled]="registerForm.invalid || (isLoading | async)"
+    >
+      Zarejestruj
+    </button>
+  </mat-card-actions>
+  <mat-card-footer class="register__footer">
+    Zapomnniałeś hasła?
+    <a class="register__register" [routerLink]="['/auth/recovery']"
+      >Przypomnij hasło</a
+    >
+  </mat-card-footer>
+</mat-card>

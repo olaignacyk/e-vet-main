@@ -1,0 +1,44 @@
+
+mat-card-content {
+  flex: 1;
+  display: flex;
+  overflow: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  width: 100%;
+  height: 20vh;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  display: flex;
+  overflow: auto;
+  padding: 0;
+}
+.message {
+  padding: 5px 12px;
+  margin: 1px;
+  border-radius: 25px;
+  max-width: 200px;
+  overflow-wrap: break-word;
+  flex: 1 1 auto;
+  color: #ffffff;
+  border: 1px solid #6d6d6d;
+}
+.message-player {
+  background-color: #3f6ff2;
+  align-self: flex-end;
+}
+.message-opponent {
+  background-color: #454545;
+  align-self: flex-start;
+}
+mat-card-actions {
+  display: flex;
+  width: 100%;
+  margin: 0;
+}
+.actions {
+  width: 100%;
+}

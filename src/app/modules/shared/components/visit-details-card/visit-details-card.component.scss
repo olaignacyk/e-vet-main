@@ -1,0 +1,16 @@
+.visit-details__form {
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.subtitle {
+  margin-top: 16px;
+  color: rgba(0,0,0,0.5);
+}
+
+.visit-details__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

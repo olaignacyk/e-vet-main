@@ -1,0 +1,79 @@
+<ng-container *ngIf="config">
+  <table mat-table matSort class="full-width-table" [dataSource]="data || []">
+    <ng-container
+      *ngFor="let column of config.displayedColumns"
+      [matColumnDef]="column.field"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ column.label }}
+      </th>
+      <ng-container [ngSwitch]="column.type">
+        <ng-container *ngSwitchCase="ColumnType.TEXT">
+          <td mat-cell *matCellDef="let row">{{ row[column.field] }}</td>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="ColumnType.NUMBER">
+          <td mat-cell *matCellDef="let row">{{ row[column.field] }}</td>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="ColumnType.CURRENCY">
+          <td mat-cell *matCellDef="let row">
+            {{ row[column.field] | currency: "PLN":"symbol" }}
+          </td>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="ColumnType.DATE">
+          <td mat-cell *matCellDef="let row">{{ row[column.field] | date }}</td>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="ColumnType.TOGGLE">
+          <td mat-cell *matCellDef="let row">
+            <mat-icon>{{ row[column.field] ? "done" : "close" }}</mat-icon>
+          </td>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>
+        <button
+          *ngIf="displayCreate"
+          mat-icon-button
+          color="primary"
+          (click)="openCreateDialog()"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <button
+          *ngIf="displayEdit"
+          mat-icon-button
+          class="opaque-icon"
+          (click)="openEditDialog(row.id)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          *ngIf="displayPreview"
+          mat-icon-button
+          (click)="preview(row.id)"
+          class="opaque-icon"
+        >
+          <mat-icon>remove_red_eye</mat-icon>
+        </button>
+        <button
+          *ngIf="displayDelete"
+          mat-icon-button
+          (click)="delete(row.id)"
+          class="opaque-icon"
+        >
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</ng-container>

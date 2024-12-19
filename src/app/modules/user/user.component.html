@@ -1,0 +1,54 @@
+<div class="user">
+  <mat-toolbar color="primary" class="user__toolbar">
+    <div>
+      <button mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Panel użytkownika</span>
+    </div>
+
+    <div *ngIf="user | async as user">
+      <span class="user-toolbar__user-profile">
+        {{ user?.sub }}
+      </span>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon class="user-toolbar__menu-button">more_vert</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+  <section class="user__content">
+    <div class="user__menu">
+      <div class="user-menu__logo-container">
+        <img class="user-menu__logo" src="assets/img/logo.png" />
+      </div>
+      <div
+        matRipple
+        *ngFor="let menuItem of menuList"
+        [routerLink]="menuItem.url"
+        [routerLinkActive]="'user-menu__item--active'"
+        class="user-menu__item"
+      >
+        <mat-icon>{{ menuItem.icon }}</mat-icon>
+        <span>{{ menuItem.label }}</span>
+      </div>
+    </div>
+    <div class="user__page">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+</div>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [routerLink]="['profile']">
+    <mat-icon>account_circle</mat-icon>
+    <span>Profil</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>vpn_key</mat-icon>
+    <span>Zmień hasło</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>logout</mat-icon>
+    <span>Wyloguj się</span>
+  </button>
+</mat-menu>

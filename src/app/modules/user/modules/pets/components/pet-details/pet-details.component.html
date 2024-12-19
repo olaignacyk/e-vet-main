@@ -1,0 +1,97 @@
+<mat-card class="main-container" *ngIf="petDetails">
+  <mat-card-title>
+    <h2 class="pets-details__header">
+      <span>Szczegóły</span>
+      <span>
+        <button *ngIf="!editMode" mat-button (click)="editModeOn()">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </span>
+    </h2>
+  </mat-card-title>
+  <div class="pets-details__div">
+    <mat-card-content
+      *ngIf="petDetails.form"
+      [ngClass]="{ 'hidden-underline': !editMode }"
+      [formGroup]="petDetails.form"
+    >
+      <div class="rows">
+        <span>
+          <mat-icon color="primary" style="margin-right: 16px">pets</mat-icon>
+          <mat-form-field>
+            <mat-label>Nazwa</mat-label>
+            <input matInput formControlName="name" [readonly]="!editMode" />
+          </mat-form-field>
+        </span>
+        <span>
+          <mat-icon color="primary" style="margin-right: 16px">star</mat-icon>
+          <mat-form-field>
+            <mat-label>Gatunek</mat-label>
+            <input matInput formControlName="species" [readonly]="!editMode" />
+          </mat-form-field>
+        </span>
+      </div>
+      <div class="rows">
+        <span>
+          <mat-icon color="primary" style="margin-right: 16px"
+            >calendar_month</mat-icon
+          >
+          <mat-form-field>
+            <mat-label>Data urodzenia</mat-label>
+            <input
+              matInput
+              formControlName="birthDate"
+              [readonly]="!editMode"
+            />
+          </mat-form-field>
+        </span>
+        <span>
+          <mat-icon color="primary" style="margin-right: 16px">male</mat-icon>
+          <mat-form-field>
+            <mat-label>Płeć</mat-label>
+            <input matInput formControlName="gender" [readonly]="!editMode" />
+          </mat-form-field>
+        </span>
+      </div>
+      <div class="rows">
+        <span>
+          <mat-icon color="primary" style="margin-right: 16px">scale</mat-icon>
+          <mat-form-field>
+            <mat-label>Waga(kg)</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="weight"
+              [readonly]="!editMode"
+            />
+          </mat-form-field>
+        </span>
+      </div>
+      <div class="rows">
+        <mat-icon color="primary" style="margin-right: 16px">favorite</mat-icon>
+        <h4>Sterylizacja:</h4>
+        <span *ngIf="!editMode"
+          ><mat-icon>
+            {{ petDetails.neutered ? "done" : "close" }}
+          </mat-icon></span
+        >
+        <span *ngIf="editMode">
+          <mat-slide-toggle formControlName="neutered" color="primary">
+          </mat-slide-toggle
+        ></span>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="actions">
+      <span>
+        <button
+          mat-raised-button
+          color="primary"
+          *ngIf="editMode"
+          (click)="editModeSave()"
+        >
+          Zapisz
+        </button>
+      </span>
+    </mat-card-actions>
+  </div>
+</mat-card>

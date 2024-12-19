@@ -1,0 +1,32 @@
+<div [formGroup]="formGroup">
+  <div class="dialog-header">
+    <h2>Rezerwacja wizyty</h2>
+    <span class="dialog-header__subtitle">
+      dr {{ data.doctorName }}<br />
+      {{ data.start | date: "medium" }}
+    </span>
+  </div>
+
+  <div class="dialog-form">
+    <mat-form-field>
+      <mat-select [placeholder]="'Rodzaj wizyty'" [formControlName]="'type'">
+        <mat-option [value]="15">Wizyta bez zwierzęcia (15min)</mat-option>
+        <mat-option *ngIf="data.isNextFree" [value]="30"
+          >Wizyta z badaniem (30min)</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select [placeholder]="'Zwierze'" [formControlName]="'pet'">
+        <mat-option [value]="pet.id" *ngFor="let pet of data.pets"
+          >{{ pet.name }} ({{ pet.owner?.email }})</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="dialog-actions">
+    <button mat-button (click)="close()">Anuluj</button>
+    <button mat-flat-button color="primary" (click)="save()">Zapisz</button>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+@import "src/assets/styles/variables";
+
+.upcoming-appointments {
+  min-width: 400px;
+}
+
+.upcoming-appointments__item-first {
+  color: black;
+}
+
+.upcoming-appointments__item {
+  color: gray;
+  font-size: 0.9em;
+}
+
+.upcoming-appointments__item-first:hover,
+.upcoming-appointments__item:hover {
+  cursor: pointer;
+  color: primaryColor(700);
+}
+
+.upcoming-appointments__actions {
+  display: flex;
+  justify-content: flex-end;
+}

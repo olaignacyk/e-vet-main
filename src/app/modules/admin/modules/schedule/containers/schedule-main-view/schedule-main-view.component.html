@@ -1,0 +1,25 @@
+<div>
+  <h1>Harmonogram pracy</h1>
+</div>
+<mat-card style="height: 85%; margin-bottom: 24px">
+  <span> Wybrany dzień: {{ today.toDate() | date }} </span>
+  <button (click)="navigatePrevious()" mat-icon-button>
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <button (click)="navigateNext()" mat-icon-button>
+    <mat-icon>arrow_forward</mat-icon>
+  </button>
+  <div style="height: 100%; overflow: auto">
+    <mwl-calendar-week-view
+      [dayStartHour]="8"
+      [dayEndHour]="20"
+      [viewDate]="today.toDate()"
+      [events]="(state.calendarEvents | async) || []"
+      [excludeDays]="[0]"
+      [locale]="'pl'"
+      [hourSegments]="4"
+      (eventClicked)="openCalendarEvent($event)"
+      [refresh]="refreshCalendar"
+    ></mwl-calendar-week-view>
+  </div>
+</mat-card>

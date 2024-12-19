@@ -1,0 +1,55 @@
+<mat-card>
+  <mat-card-header class="auth-card__header">
+    <img class="auth-card__logo" src="assets/img/logo.png" />
+    <h2>Logowanie</h2>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form class="auth-card__form" [formGroup]="loginForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Adres email</mat-label>
+        <input
+          matInput
+          placeholder="email@example.com"
+          [formControlName]="'email'"
+        />
+        <mat-icon matSuffix> alternate_email </mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Hasło</mat-label>
+        <input
+          matInput
+          type="{{ show ? 'text' : 'password' }}"
+          [formControlName]="'password'"
+        />
+        <mat-icon
+          matSuffix
+          (mousedown)="show = true"
+          (mouseup)="show = false"
+          (mouseleave)="show = false"
+          >{{ show ? "lock_open" : "lock" }}</mat-icon
+        >
+      </mat-form-field>
+    </form>
+    <a class="auth-card__forgot-password" [routerLink]="['./recovery']">
+      Zapomniane hasło?
+    </a>
+  </mat-card-content>
+  <mat-card-actions class="auth-card__actions">
+    <button
+      (click)="login()"
+      [disabled]="loginForm.invalid || (isLoading | async)"
+      class="auth-card__login-button"
+      mat-flat-button
+      color="primary"
+    >
+      Zaloguj się
+    </button>
+  </mat-card-actions>
+  <mat-card-footer class="auth-card__footer">
+    Nie masz konta?
+    <a class="auth-card__register" [routerLink]="['/auth/register']">
+      Zarejestruj się
+    </a>
+  </mat-card-footer>
+</mat-card>

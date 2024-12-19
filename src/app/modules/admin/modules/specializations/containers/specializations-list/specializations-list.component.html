@@ -1,0 +1,21 @@
+<div>
+  <h1>Specjalizacje</h1>
+</div>
+
+<mat-card>
+  <div
+    class="species-list__loading"
+    *ngIf="state.specializationsIsLoading | async"
+  >
+    <mat-spinner></mat-spinner>
+  </div>
+  <app-generic-admin-table
+    *ngIf="!(state.specializationsIsLoading | async)"
+    [config]="tableConfig"
+    [data]="state.specializations | async"
+    [displayCreate]="true"
+    [displayEdit]="true"
+    (dialogCreateRes)="create($event)"
+    (dialogEditRes)="update($event)"
+  ></app-generic-admin-table>
+</mat-card>

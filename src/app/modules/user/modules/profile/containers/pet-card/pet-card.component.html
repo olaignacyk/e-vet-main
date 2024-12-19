@@ -1,0 +1,28 @@
+<mat-card class="profile__card">
+  <mat-card-title><h2>Lista zwierząt użytkownika</h2></mat-card-title>
+  <mat-card-content>
+    <table mat-table [dataSource]="mockedData" class="profile__table">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nazwa</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="age">
+        <th mat-header-cell *matHeaderCellDef>Wiek</th>
+        <td mat-cell *matCellDef="let element">{{ element.age }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef>Płeć</th>
+        <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="species">
+        <th mat-header-cell *matHeaderCellDef>Rasa</th>
+        <td mat-cell *matCellDef="let element">{{ element.species }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr></table
+  ></mat-card-content>
+</mat-card>

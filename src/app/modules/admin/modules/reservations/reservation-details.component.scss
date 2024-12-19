@@ -1,0 +1,12 @@
+.reservation-details {
+  display: flex;
+  gap: 16px;
+
+  app-visit-details-card {
+    flex: 3;
+  }
+
+  app-pet-details-card {
+    flex: 2
+  }
+}

@@ -1,0 +1,11 @@
+.opaque-icon {
+  opacity: 0.5;
+}
+
+.opaque-icon:hover {
+  opacity: 1;
+}
+
+.hidden-underline .mat-form-field-underline {
+  display: none;
+}

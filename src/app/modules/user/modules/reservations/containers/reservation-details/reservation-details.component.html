@@ -1,0 +1,12 @@
+<div class="reservation-details">
+  <app-visit-details-card
+    [readonly]="true"
+    [form]="form"
+    [date]="reservation.date"
+    [procedures]="reservation.procedures"
+  ></app-visit-details-card>
+  <div class="reservation-details__side">
+    <app-pet-details-card *ngIf="pet" [pet]="pet"></app-pet-details-card>
+    <app-visit-comments></app-visit-comments>
+  </div>
+</div>

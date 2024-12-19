@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-title><h2>Odbyte zabiegi</h2></mat-card-title>
+  <mat-card-content>
+    <span class="table-container">
+      <table mat-table [dataSource]="dataSource" class="treatments-table">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Nazwa zabiegu</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.name }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef>Opis</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.description }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>Data</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.date | date: "shortDate" }}
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <span class="tableRows">
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </span>
+      </table>
+    </span>
+    <mat-paginator [pageSizeOptions]="[3]" showFirstLastButtons hidePageSize>
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>

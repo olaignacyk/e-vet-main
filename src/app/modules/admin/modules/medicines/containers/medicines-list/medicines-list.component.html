@@ -1,0 +1,21 @@
+<div>
+  <h1>Lekarstwa</h1>
+</div>
+
+<mat-card>
+  <div
+    class="medicines-list__loading"
+    *ngIf="medicinesState.medicinesIsLoading | async"
+  >
+    <mat-spinner></mat-spinner>
+  </div>
+  <app-generic-admin-table
+    *ngIf="!(medicinesState.medicinesIsLoading | async)"
+    [config]="tableConfig"
+    [displayCreate]="true"
+    [displayEdit]="true"
+    [data]="medicinesState.medicines | async"
+    (dialogCreateRes)="createMedicine($event)"
+    (dialogEditRes)="editMedicine($event)"
+  ></app-generic-admin-table>
+</mat-card>

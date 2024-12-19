@@ -1,0 +1,22 @@
+<mat-card>
+  <mat-card-title>Kalendarz</mat-card-title>
+  <span> Wybrany dzień: {{ today.toDate() | date }} </span>
+  <button (click)="navigatePrevious()" mat-icon-button>
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <button (click)="navigateNext()" mat-icon-button>
+    <mat-icon>arrow_forward</mat-icon>
+  </button>
+  <mwl-calendar-week-view
+    [dayStartHour]="8"
+    [dayEndHour]="20"
+    [viewDate]="today.toDate()"
+    [events]="events"
+    [excludeDays]="[0]"
+    [locale]="'pl'"
+    [hourSegments]="4"
+    (eventClicked)="eventClicked($event)"
+  ></mwl-calendar-week-view>
+</mat-card>
+
+<!--(eventClicked)="eventClicked($event)"-->

@@ -1,0 +1,41 @@
+<div [formGroup]="form">
+  <h2>{{ data.id ? "Edytuj" : "Dodaj" }} dyżur</h2>
+  <div class="container">
+    <mat-form-field>
+      <mat-label>Początek dyżuru</mat-label>
+      <mat-select formControlName="startTime">
+        <mat-option *ngFor="let time of timeList" [value]="time">{{
+          time
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Koniec dyżuru</mat-label>
+      <mat-select formControlName="endTime">
+        <mat-option *ngFor="let time of timeList" [value]="time">{{
+          time
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Lekarz</mat-label>
+      <mat-select formControlName="doctorId">
+        <mat-option *ngFor="let doctor of doctors$ | async" [value]="doctor.id">
+          {{ doctor.firstName }} {{ doctor.lastName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <button mat-button [mat-dialog-close]>Anuluj</button>
+  <button
+    mat-flat-button
+    color="primary"
+    [disabled]="form.invalid"
+    (click)="save()"
+  >
+    Zapisz
+  </button>
+</div>

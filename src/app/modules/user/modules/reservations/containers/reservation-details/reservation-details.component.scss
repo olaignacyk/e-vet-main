@@ -1,0 +1,14 @@
+.reservation-details {
+  display: flex;
+  gap: 16px;
+
+  app-visit-details-card {
+    flex: 3;
+  }
+}
+
+.reservation-details__side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

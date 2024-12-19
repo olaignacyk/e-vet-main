@@ -1,0 +1,51 @@
+<mat-card class="profile__card">
+  <mat-card-title><h2>Profil użytkownika</h2></mat-card-title>
+
+  <mat-card-content>
+    <span class="profile__form">
+      <ng-container *ngIf="!editMode">
+        <span> Imię: {{ data.value.firstName }} </span>
+        <span> Nazwisko: {{ data.value.lastName }} </span>
+        <span> Numer telefonu: {{ data.value.phone }} </span>
+        <span> Hasło: {{ data.value.password }} </span>
+        <mat-card-actions>
+          <button
+            class="profile__button"
+            mat-raised-button
+            color="primary"
+            (click)="editMode = !editMode"
+          >
+            Edytuj
+          </button>
+        </mat-card-actions>
+      </ng-container>
+    </span>
+
+    <form [formGroup]="data" class="profile__form" *ngIf="editMode">
+      <mat-form-field appearance="outline">
+        <mat-label>Imię</mat-label>
+        <input matInput formControlName="firstName" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Nazwisko</mat-label>
+        <input matInput formControlName="lastName" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Numer telefonu</mat-label>
+        <input matInput formControlName="phone" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Hasło</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+      <button
+        class="profile__button"
+        mat-raised-button
+        color="primary"
+        (click)="editMode = !editMode"
+      >
+        Zapisz
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

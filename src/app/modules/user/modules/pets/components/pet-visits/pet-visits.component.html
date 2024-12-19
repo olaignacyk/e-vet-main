@@ -1,0 +1,27 @@
+<mat-card>
+  <mat-card-title><h2>Wizyty</h2></mat-card-title>
+  <mat-card-content>
+    <span class="table-container">
+      <table mat-table [dataSource]="dataSource" class="visits-table">
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>Data</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.date | date: "shortDate" }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="diagnosis">
+          <th mat-header-cell *matHeaderCellDef>Diagnoza</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.diagnosis }}
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <span class="tableRows">
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </span>
+      </table>
+    </span>
+    <mat-paginator [pageSizeOptions]="[4]" showFirstLastButtons hidePageSize>
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>

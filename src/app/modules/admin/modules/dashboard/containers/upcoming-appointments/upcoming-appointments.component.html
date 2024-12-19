@@ -1,0 +1,28 @@
+<mat-card class="upcoming-appointments">
+  <mat-card-title>Nadchodzące wizyty</mat-card-title>
+  <mat-card-subtitle>Data: {{ today | date }}</mat-card-subtitle>
+  <mat-card-content>
+    <div *ngIf="dashboardService.reservationsLoading | async">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!(dashboardService.reservationsLoading | async)">
+      <div
+        *ngFor="
+          let reservation of dashboardService.reservations | async;
+          let i = index
+        "
+        [ngClass]="{
+          'upcoming-appointments__item-first': i == 0,
+          'upcoming-appointments__item': i != 0
+        }"
+        (click)="previewReservation(reservation.id)"
+      >
+        <span>
+          {{ reservation.startTime | slice: 0:5 }} -
+          {{ reservation.endTime | slice: 0:5 }} |
+          {{ reservation.pet.name }}
+        </span>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

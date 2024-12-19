@@ -1,0 +1,17 @@
+.admin-dashboard {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+app-free-slots {
+  flex: 2;
+}
+
+app-upcoming-appointments {
+  flex: 1;
+}
+
+app-work-schedule {
+  flex: 1;
+}

@@ -1,0 +1,19 @@
+<div>
+  <h1>Gatunki</h1>
+</div>
+
+<mat-card>
+  <div
+    class="species-list__loading"
+    *ngIf="speciesState.speciesIsLoading | async"
+  >
+    <mat-spinner></mat-spinner>
+  </div>
+  <app-generic-admin-table
+    *ngIf="!(speciesState.speciesIsLoading | async)"
+    [config]="tableConfig"
+    [data]="speciesState.species | async"
+    [displayCreate]="true"
+    (dialogCreateRes)="create($event)"
+  ></app-generic-admin-table>
+</mat-card>

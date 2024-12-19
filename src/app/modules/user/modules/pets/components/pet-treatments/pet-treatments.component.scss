@@ -1,0 +1,29 @@
+mat-card {
+  height: 32vh;
+  width: 45vw;
+}
+.treatments-table {
+  width: 100%;
+}
+.table-container {
+  display: flex;
+  flex-direction: column;
+  height: 22vh;
+  overflow: auto;
+}
+.tableRows {
+  display: flex;
+  flex-direction: column;
+  height: 20vh;
+}
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+td {
+  overflow: hidden;
+  width: 200px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,0 +1,22 @@
+<div *ngIf="pet">
+  <h1>{{ pet.name }}</h1>
+  <div class="pets-details__loading" *ngIf="loading">
+    <mat-spinner> </mat-spinner>
+  </div>
+  <div class="main" *ngIf="!loading">
+    <div class="upper-div">
+      <app-pet-details [petDetails]="pet"></app-pet-details>
+      <app-pet-visits
+        [visits]="pet.medicalHistory.appointments"
+      ></app-pet-visits>
+    </div>
+    <div class="lower-div">
+      <app-pet-treatments
+        [treatments]="getPetProcedures()"
+      ></app-pet-treatments>
+      <app-pet-recommend
+        [recommendations]="pet.medicalHistory.appointments"
+      ></app-pet-recommend>
+    </div>
+  </div>
+</div>

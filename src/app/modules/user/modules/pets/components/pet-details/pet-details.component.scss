@@ -1,0 +1,25 @@
+.pets-details__header {
+  display: flex;
+  justify-content: space-between;
+}
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 35vh;
+  width: 50vw;
+}
+.rows {
+  display: flex;
+}
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin: 0;
+  padding: 0;
+}
+.pets-details__div {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}

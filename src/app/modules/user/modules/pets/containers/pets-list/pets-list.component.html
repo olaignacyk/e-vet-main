@@ -1,0 +1,17 @@
+<div>
+  <h1>Moje zwierzęta</h1>
+</div>
+
+<mat-card>
+  <div class="pets-list__loading" *ngIf="petState.petsIsLoading | async">
+    <mat-spinner></mat-spinner>
+  </div>
+  <app-generic-user-table
+    *ngIf="!(petState.petsIsLoading | async)"
+    [config]="tableConfig"
+    [displayCreate]="true"
+    [data]="petState.pets | async"
+    (dialogCreateRes)="onCreateDialogRes($event)"
+    (openDetailsRes)="onOpenDetailsRes($event)"
+  ></app-generic-user-table>
+</mat-card>

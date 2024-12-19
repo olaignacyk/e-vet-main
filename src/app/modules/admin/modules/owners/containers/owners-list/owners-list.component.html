@@ -1,0 +1,16 @@
+<div>
+  <h1>Lista użytkowników</h1>
+</div>
+
+<mat-card>
+  <div class="owners-list__loading" *ngIf="ownersState.ownersIsLoading | async">
+    <mat-spinner></mat-spinner>
+  </div>
+  <app-generic-admin-table
+    *ngIf="!(ownersState.ownersIsLoading | async)"
+    [config]="tableConfig"
+    [data]="ownersState.owners | async"
+    [displayEdit]="true"
+    (dialogEditRes)="onDialogRes($event)"
+  ></app-generic-admin-table>
+</mat-card>

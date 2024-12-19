@@ -1,0 +1,59 @@
+<mat-card>
+  <h2>Pacjent</h2>
+  <div *ngIf="pet">
+    <div class="pet-details__row">
+      <span>
+        <mat-icon color="primary" style="margin-right: 16px">pets</mat-icon>
+        <mat-form-field>
+          <mat-label>Nazwa</mat-label>
+          <input matInput [readonly]="true" [value]="pet.name" />
+        </mat-form-field>
+      </span>
+      <span>
+        <mat-icon color="primary" style="margin-right: 16px">star</mat-icon>
+        <mat-form-field>
+          <mat-label>Gatunek</mat-label>
+          <input matInput [readonly]="true" [value]="pet.species.name" />
+        </mat-form-field>
+      </span>
+    </div>
+    <div class="pet-details__row">
+      <span>
+        <mat-icon color="primary" style="margin-right: 16px"
+          >calendar_month</mat-icon
+        >
+        <mat-form-field>
+          <mat-label>Data urodzenia</mat-label>
+          <input matInput [readonly]="true" [value]="pet.birthDate" />
+        </mat-form-field>
+      </span>
+      <span>
+        <mat-icon color="primary" style="margin-right: 16px">male</mat-icon>
+        <mat-form-field>
+          <mat-label>Płeć</mat-label>
+          <input matInput [readonly]="true" [value]="pet.gender" />
+        </mat-form-field>
+      </span>
+    </div>
+    <div class="pet-details__row">
+      <span>
+        <mat-icon color="primary" style="margin-right: 16px">scale</mat-icon>
+        <mat-form-field>
+          <mat-label>Waga (kg)</mat-label>
+          <input matInput [readonly]="true" [value]="pet.weightKg" />
+        </mat-form-field>
+      </span>
+      <span>
+        <mat-icon color="primary" style="margin-right: 16px">favorite</mat-icon>
+        <mat-form-field>
+          <mat-label>Sterylizacja</mat-label>
+          <input
+            matInput
+            [readonly]="true"
+            [value]="pet.neutered ? 'tak' : 'nie'"
+          />
+        </mat-form-field>
+      </span>
+    </div>
+  </div>
+</mat-card>

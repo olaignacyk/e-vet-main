@@ -1,0 +1,84 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+
+<form *ngIf="form" [formGroup]="form" class="dialog__form">
+  <ng-container *ngFor="let field of data.config">
+    <ng-container [ngSwitch]="field.type">
+      <ng-container *ngSwitchCase="FieldType.TEXT">
+        <mat-form-field>
+          <input
+            matInput
+            [placeholder]="field.label"
+            [formControlName]="field.key"
+            type="text"
+          />
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FieldType.NUMBER">
+        <mat-form-field>
+          <input
+            matInput
+            [placeholder]="field.label"
+            [formControlName]="field.key"
+            type="number"
+          />
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FieldType.DATE">
+        <mat-form-field>
+          <input
+            matInput
+            [placeholder]="field.label"
+            [formControlName]="field.key"
+            [matDatepicker]="picker"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FieldType.SELECT">
+        <mat-form-field>
+          <mat-select [placeholder]="field.label" [formControlName]="field.key">
+            <ng-container *ngIf="field.async">
+              <mat-option
+                *ngFor="let item of field.asyncValues | async"
+                [value]="item.value"
+                >{{ item.label }}</mat-option
+              >
+            </ng-container>
+            <ng-container *ngIf="!field.async">
+              <mat-option
+                *ngFor="let item of field.values"
+                [value]="item.value"
+                >{{ item.label }}</mat-option
+              >
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FieldType.TOGGLE">
+        <mat-slide-toggle color="primary" [formControlName]="field.key">
+          {{ field.label }}
+        </mat-slide-toggle>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</form>
+
+<div class="dialog__actions">
+  <button mat-button mat-dialog-close>Anuluj</button>
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="save()"
+    [disabled]="form.invalid"
+  >
+    Zapisz
+  </button>
+</div>
